@@ -76,10 +76,11 @@ function randomizeBoard() {
         }
       }
     }
+    exitLoop = true;
     if (gen !== '1' && !porygonFound && !cyndaquilFound && !umbreonFound
          || gen !== '1' && giveUpTimer1 > 251000 && !porygonFound && !(cyndaquilFound || umbreonFound)
          || gen !== '1' && giveUpTimer2 > 251000 && !porygonFound) {
-      exitLoop = true;
+      exitLoop = false;
     } else {
       porygonFound = false;
       cyndaquilFound = false;

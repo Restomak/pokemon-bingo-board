@@ -44,6 +44,7 @@ function randomizeBoard() {
     cyndaquilFound = false;
     umbreonFound = false;
     pokemonOnTheBoard = [];
+    seed = generateSeedString(); //new seed each attempt
     mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
     for (let row = 1; row <= 5; row++) {
       for (let col = 1; col <= 5; col++) {

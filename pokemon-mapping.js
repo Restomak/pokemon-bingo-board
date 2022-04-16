@@ -48,13 +48,13 @@ function randomizeBoard() {
           let pokeNum = getSeededRandomInt(1, getPokemonCountByGeneration(gen)) - 1;
           if (pokemonOnTheBoard.indexOf(pokeNum) < 0) {
             chosen = true;
-            if (pokeNum == 137 - 1) { //-1 because of arrays oops
+            if (pokeNum == 137) {
               porygonFound = true;
             }
-            if (pokeNum == 155 - 1) { //-1 because of arrays oops
+            if (pokeNum == 155) {
               cyndaquilFound = true;
             }
-            if (pokeNum == 197 - 1) { //-1 because of arrays oops
+            if (pokeNum == 197) {
               umbreonFound = true;
             }
             const chosenPoke = pokemonData[pokeNum]
@@ -77,8 +77,9 @@ function randomizeBoard() {
     }
     if (gen =='1' ||
         porygonFound && cyndaquilFound && umbreonFound ||
-        giveUpTimer > 25100 && porygonFound && (cyndaquilFound || umbreonFound) ||
-        giveUpTimer > 251000 && porygonFound)
+        giveUpTimer > 251 && porygonFound && (cyndaquilFound || umbreonFound) ||
+        giveUpTimer > 2510 && porygonFound ||
+        giveUpTimer > 25100)
       exitLoop = true;
     } else {
       porygonFound = false;

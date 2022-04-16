@@ -31,34 +31,53 @@ function randomizeBoard() {
 
   let pokemonOnTheBoard = [];
 
-  for (let row = 1; row <= 5; row++) {
-    for (let col = 1; col <= 5; col++) {
-      if (row === 3 && col === 3) {
-        //free space
-        continue;
-      }
-      let chosen = false
-      while (!chosen) {
-        let pokeNum = getSeededRandomInt(1, getPokemonCountByGeneration(gen)) - 1;
-        if (pokemonOnTheBoard.indexOf(pokeNum) < 0) {
-          chosen = true;
-          const chosenPoke = pokemonData[pokeNum]
-          pokemonOnTheBoard.push(pokeNum);
-          let cell = document.getElementById("r" + row + "c" + col + "-div");
-          const genImageToUse = chosenPoke['gen' + gen]?.image ? 'gen' + gen : 'gen5'; //fall back to gen 5 as it has (unofficial) sprites for every mon
-          let image = chosenPoke[genImageToUse]['image'];
-          if (gen !== '1' && mySeededRng() < .007) {
-            image = chosenPoke[genImageToUse]['image-shiny'];
-            console.log('shiny', chosenPoke.name)
+  let porygonFound = false
+  let cyndaquilFound = false
+  let umbreonFound = false
+  let giveUpTimer = 0
+  while (!porygonFound && !cyndaquilFound && !umbreonFound || giveUpTimer > 251 || gen == 1) {
+    porygonFound = false;
+    cyndaquilFound = false;
+    umbreonFound = false;
+    for (let row = 1; row <= 5; row++) {
+      for (let col = 1; col <= 5; col++) {
+        if (row === 3 && col === 3) {
+          //free space
+          continue;
+        }
+        let chosen = false
+        while (!chosen) {
+          let pokeNum = getSeededRandomInt(1, getPokemonCountByGeneration(gen)) - 1;
+          if (pokemonOnTheBoard.indexOf(pokeNum) < 0) {
+            chosen = true;
+            if (pokeNum == 137) {
+              porygonFound = true;
+            }
+            if (pokeNum == 155) {
+              cyndaquilFound = true;
+            }
+            if (pokeNum == 197) {
+              umbreonFound = true;
+            }
+            const chosenPoke = pokemonData[pokeNum]
+            pokemonOnTheBoard.push(pokeNum);
+            let cell = document.getElementById("r" + row + "c" + col + "-div");
+            const genImageToUse = chosenPoke['gen' + gen]?.image ? 'gen' + gen : 'gen5'; //fall back to gen 5 as it has (unofficial) sprites for every mon
+            let image = chosenPoke[genImageToUse]['image'];
+            if (gen !== '1' && mySeededRng() < .007) {
+              image = chosenPoke[genImageToUse]['image-shiny'];
+              console.log('shiny', chosenPoke.name)
+            }
+            cell.innerHTML =
+              "<img class=\"pokeball\" src=\"sprites/poke-ball.png\"/>" +
+              "<img class=\"masterball\" src=\"sprites/master-ball.png\"/>" +
+              "<img class=\"pokemon-sprite " + genImageToUse + "\"" +
+              " src=\"" + image + "\"/><span>" + chosenPoke.name + "</span>";
           }
-          cell.innerHTML =
-            "<img class=\"pokeball\" src=\"sprites/poke-ball.png\"/>" +
-            "<img class=\"masterball\" src=\"sprites/master-ball.png\"/>" +
-            "<img class=\"pokemon-sprite " + genImageToUse + "\"" +
-            " src=\"" + image + "\"/><span>" + chosenPoke.name + "</span>";
         }
       }
     }
+    giveUpTimer++;
   }
 
   //set cells as marked if they returned to the same seed in a single session

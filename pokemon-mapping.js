@@ -43,6 +43,7 @@ function randomizeBoard() {
     porygonFound = false;
     cyndaquilFound = false;
     umbreonFound = false;
+    pokemonOnTheBoard = [];
     for (let row = 1; row <= 5; row++) {
       for (let col = 1; col <= 5; col++) {
         if (row === 3 && col === 3) {

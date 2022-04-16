@@ -36,15 +36,8 @@ function randomizeBoard() {
   let umbreonFound = false;
   let giveUpTimer1 = 0; //gives up on getting all 3
   let giveUpTimer2 = 0; //gives up on getting even two
-  while (gen !== '1' && !porygonFound && !cyndaquilFound && !umbreonFound
-         || gen !== '1' && giveUpTimer1 > 251000 && !porygonFound && !(cyndaquilFound || umbreonFound)
-         || gen !== '1' && giveUpTimer2 > 251000 && !porygonFound) {
-    porygonFound = false;
-    cyndaquilFound = false;
-    umbreonFound = false;
-    pokemonOnTheBoard = [];
-    seed = generateSeedString(); //new seed each attempt
-    mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
+  let exitLoop = false;
+  do {
     for (let row = 1; row <= 5; row++) {
       for (let col = 1; col <= 5; col++) {
         if (row === 3 && col === 3) {
@@ -83,11 +76,23 @@ function randomizeBoard() {
         }
       }
     }
-    giveUpTimer1++;
-    if (giveUpTimer1 > 25100) {
-      giveUpTimer2++;
+    if (gen !== '1' && !porygonFound && !cyndaquilFound && !umbreonFound
+         || gen !== '1' && giveUpTimer1 > 251000 && !porygonFound && !(cyndaquilFound || umbreonFound)
+         || gen !== '1' && giveUpTimer2 > 251000 && !porygonFound) {
+      exitLoop = true;
+    } else {
+      porygonFound = false;
+      cyndaquilFound = false;
+      umbreonFound = false;
+      seed = generateSeedString();
+      mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
+      pokemonOnTheBoard = [];
+      giveUpTimer1++;
+      if (giveUpTimer1 > 25100) {
+        giveUpTimer2++;
+      }
     }
-  }
+  } while (!exitLoop)
 
   //set cells as marked if they returned to the same seed in a single session
   if (seed === sessionStorage.getItem('seed')) {

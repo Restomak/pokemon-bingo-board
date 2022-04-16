@@ -31,15 +31,14 @@ function randomizeBoard() {
 
   let pokemonOnTheBoard = [];
 
-  let porygonFound = false
-  let cyndaquilFound = false
-  let umbreonFound = false
-  let giveUpTimer1 = 0 //gives up on getting all 3
-  let giveUpTimer2 = 0 //gives up on getting even two
-  while (!porygonFound && !cyndaquilFound && !umbreonFound
-         || giveUpTimer1 > 25100 && !porygonFound && !(cyndaquilFound || umbreonFound)
-         || giveUpTimer2 > 25100 && !porygonFound
-         || gen == 1) {
+  let porygonFound = false;
+  let cyndaquilFound = false;
+  let umbreonFound = false;
+  let giveUpTimer1 = 0; //gives up on getting all 3
+  let giveUpTimer2 = 0; //gives up on getting even two
+  while (gen !== '1' && !porygonFound && !cyndaquilFound && !umbreonFound
+         || gen !== '1' && giveUpTimer1 > 25100 && !porygonFound && !(cyndaquilFound || umbreonFound)
+         || gen !== '1' && giveUpTimer2 > 25100 && !porygonFound) {
     porygonFound = false;
     cyndaquilFound = false;
     umbreonFound = false;
@@ -85,7 +84,7 @@ function randomizeBoard() {
       }
     }
     giveUpTimer1++;
-    if (giveUpTimer > 25100) {
+    if (giveUpTimer1 > 25100) {
       giveUpTimer2++;
     }
   }

@@ -37,8 +37,8 @@ function randomizeBoard() {
   let giveUpTimer1 = 0; //gives up on getting all 3
   let giveUpTimer2 = 0; //gives up on getting even two
   while (gen !== '1' && !porygonFound && !cyndaquilFound && !umbreonFound
-         || gen !== '1' && giveUpTimer1 > 25100 && !porygonFound && !(cyndaquilFound || umbreonFound)
-         || gen !== '1' && giveUpTimer2 > 25100 && !porygonFound) {
+         || gen !== '1' && giveUpTimer1 > 251000 && !porygonFound && !(cyndaquilFound || umbreonFound)
+         || gen !== '1' && giveUpTimer2 > 251000 && !porygonFound) {
     porygonFound = false;
     cyndaquilFound = false;
     umbreonFound = false;
@@ -56,13 +56,13 @@ function randomizeBoard() {
           let pokeNum = getSeededRandomInt(1, getPokemonCountByGeneration(gen)) - 1;
           if (pokemonOnTheBoard.indexOf(pokeNum) < 0) {
             chosen = true;
-            if (pokeNum == 137) {
+            if (pokeNum == 137 - 1) { //-1 because of arrays oops
               porygonFound = true;
             }
-            if (pokeNum == 155) {
+            if (pokeNum == 155 - 1) { //-1 because of arrays oops
               cyndaquilFound = true;
             }
-            if (pokeNum == 197) {
+            if (pokeNum == 197 - 1) { //-1 because of arrays oops
               umbreonFound = true;
             }
             const chosenPoke = pokemonData[pokeNum]

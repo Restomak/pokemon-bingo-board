@@ -37,8 +37,8 @@ function randomizeBoard() {
   let giveUpTimer1 = 0 //gives up on getting all 3
   let giveUpTimer2 = 0 //gives up on getting even two
   while (!porygonFound && !cyndaquilFound && !umbreonFound
-         || giveUpTimer1 > 251 && !porygonFound && !(cyndaquilFound || umbreonFound)
-         || giveUpTimer2 > 251 && !porygonFound
+         || giveUpTimer1 > 25100 && !porygonFound && !(cyndaquilFound || umbreonFound)
+         || giveUpTimer2 > 25100 && !porygonFound
          || gen == 1) {
     porygonFound = false;
     cyndaquilFound = false;
@@ -85,7 +85,7 @@ function randomizeBoard() {
       }
     }
     giveUpTimer1++;
-    if (giveUpTimer > 251) {
+    if (giveUpTimer > 25100) {
       giveUpTimer2++;
     }
   }

@@ -27,7 +27,7 @@ let gen = genSelector.value;
 function randomizeBoard() {
   gen = genSelector.value;
 
-  mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
+  //mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
 
   let pokemonOnTheBoard = [];
 
@@ -44,6 +44,7 @@ function randomizeBoard() {
     cyndaquilFound = false;
     umbreonFound = false;
     pokemonOnTheBoard = [];
+    mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
     for (let row = 1; row <= 5; row++) {
       for (let col = 1; col <= 5; col++) {
         if (row === 3 && col === 3) {

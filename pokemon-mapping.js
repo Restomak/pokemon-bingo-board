@@ -34,8 +34,12 @@ function randomizeBoard() {
   let porygonFound = false
   let cyndaquilFound = false
   let umbreonFound = false
-  let giveUpTimer = 0
-  while (!porygonFound && !cyndaquilFound && !umbreonFound || giveUpTimer > 251 || gen == 1) {
+  let giveUpTimer1 = 0 //gives up on getting all 3
+  let giveUpTimer2 = 0 //gives up on getting even two
+  while (!porygonFound && !cyndaquilFound && !umbreonFound
+         || giveUpTimer1 > 251 && !porygonFound && !(cyndaquilFound || umbreonFound)
+         || giveUpTimer2 > 251 && !porygonFound
+         || gen == 1) {
     porygonFound = false;
     cyndaquilFound = false;
     umbreonFound = false;
@@ -77,7 +81,10 @@ function randomizeBoard() {
         }
       }
     }
-    giveUpTimer++;
+    giveUpTimer1++;
+    if (giveUpTimer > 251) {
+      giveUpTimer2++;
+    }
   }
 
   //set cells as marked if they returned to the same seed in a single session

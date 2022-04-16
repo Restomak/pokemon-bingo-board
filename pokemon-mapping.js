@@ -34,8 +34,7 @@ function randomizeBoard() {
   let porygonFound = false;
   let cyndaquilFound = false;
   let umbreonFound = false;
-  let giveUpTimer1 = 0; //gives up on getting all 3
-  let giveUpTimer2 = 0; //gives up on getting even two
+  let giveUpTimer = 0;
   let exitLoop = false;
   do {
     for (let row = 1; row <= 5; row++) {
@@ -78,8 +77,8 @@ function randomizeBoard() {
     }
     if (gen =='1' ||
         porygonFound && cyndaquilFound && umbreonFound ||
-        giveUpTimer1 > 251000 && porygonFound && (cyndaquilFound || umbreonFound) ||
-        giveUpTimer2 > 251000 && porygonFound)
+        giveUpTimer > 25100 && porygonFound && (cyndaquilFound || umbreonFound) ||
+        giveUpTimer > 251000 && porygonFound)
       exitLoop = true;
     } else {
       porygonFound = false;
@@ -88,10 +87,7 @@ function randomizeBoard() {
       seed = generateSeedString();
       mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
       pokemonOnTheBoard = [];
-      giveUpTimer1++;
-      if (giveUpTimer1 > 25100) {
-        giveUpTimer2++;
-      }
+      giveUpTimer++;
     }
   } while (!exitLoop)
 

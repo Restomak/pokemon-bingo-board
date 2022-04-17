@@ -81,8 +81,9 @@ function randomizeBoard() {
         giveUpTimer > 2510 && porygonFound ||
         giveUpTimer > 2510000) {*/
     if (gen == '1' ||
-        porygonFound ||
-        giveUpTimer > 10) {
+        porygonFound && (cyndaquilFound || umbreonFound) ||
+        porygonFound && giveUpTimer > 10 ||
+        giveUpTimer > 151) {
       exitLoop = true;
     } else {
       porygonFound = false;

@@ -24,7 +24,7 @@ if (previouslySelectedGen) {
 }
 let gen = genSelector.value;
 
-function randomizeBoard() {
+function randomizeBoard(reroll = false) {
   gen = genSelector.value;
 
   mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
@@ -81,8 +81,8 @@ function randomizeBoard() {
         giveUpTimer > 2510 && porygonFound ||
         giveUpTimer > 2510000) {*/
     if (gen == '1' ||
-        porygonFound && cyndaquilFound && umbreonFound ||
-        porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 151 ||
+        reroll && porygonFound && cyndaquilFound && umbreonFound ||
+        reroll && porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 151 ||
         porygonFound && giveUpTimer > 251 ||
         giveUpTimer > 386) {
       exitLoop = true;
@@ -169,7 +169,7 @@ function toggleCell(event, skipSessionStorage = false) {
 
 function rerollBoard() {
   seed = generateSeedString();
-  randomizeBoard();
+  randomizeBoard(true);
   document.querySelectorAll('.marked').forEach(ele => ele.classList.remove('marked'))
   document.querySelectorAll('.bingo').forEach(ele => ele.classList.remove('bingo'))
 }

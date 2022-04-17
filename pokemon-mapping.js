@@ -181,8 +181,8 @@ function randomizeBoard(reroll = false) {
     if (gen == '1' ||
         !reroll && porygonFound ||
         porygonFound && cyndaquilFound && umbreonFound ||
-        porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 100 - favouritePokemonFound * 5 - lovedPokemonFound * 2 + excludedPokemonFound * 3 ||
-        porygonFound && giveUpTimer > 200 - favouritePokemonFound * 5 - lovedPokemonFound * 2 + excludedPokemonFound * 3 ||
+        porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 100 - favouritePokemonFound * 4 - lovedPokemonFound + excludedPokemonFound * 2 ||
+        porygonFound && giveUpTimer > 200 - favouritePokemonFound * 4 - lovedPokemonFound + excludedPokemonFound * 2 ||
         giveUpTimer > 300) {
       exitLoop = true;
     } else {

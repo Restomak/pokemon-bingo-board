@@ -87,10 +87,8 @@ function randomizeBoard(reroll = false) {
                 pokeNum == 177 - 1 || //natu
                 pokeNum == 194 - 1 || //wooper
                 pokeNum == 196 - 1 || //espeon
-                pokeNum == 206 - 1 || //dunsparse
                 pokeNum == 213 - 1 || //shuckle
                 pokeNum == 216 - 1 || //teddiursa
-                pokeNum == 225 - 1 || //delibird
                 pokeNum >= 235 - 1 || //smaergle
                 pokeNum >= 248 - 1 || //tyrannitar
                 pokeNum >= 292 - 1 || //shedinja
@@ -135,9 +133,11 @@ function randomizeBoard(reroll = false) {
                 pokeNum == 179 - 1 || //mareep
                 pokeNum >= 182 - 1 || //bellossom
                 pokeNum >= 191 - 1 || //sunkern
+                pokeNum == 206 - 1 || //dunsparse
                 pokeNum >= 211 - 1 || //quilfish
                 pokeNum >= 212 - 1 || //scizor
                 pokeNum >= 221 - 1 || //piloswine
+                pokeNum == 225 - 1 || //delibird
                 pokeNum >= 227 - 1 && pokeNum <= 231 - 1 || //skarmory, houndour,houndoom, kingdra, phanpy
                 pokeNum >= 241 - 1 || //miltank
                 pokeNum >= 242 - 1 || //blissey
@@ -181,8 +181,8 @@ function randomizeBoard(reroll = false) {
     if (gen == '1' ||
         !reroll && porygonFound ||
         porygonFound && cyndaquilFound && umbreonFound ||
-        porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 50 - favouritePokemonFound * 4 - lovedPokemonFound * 2 + excludedPokemonFound * 3 ||
-        porygonFound && giveUpTimer > 100 - favouritePokemonFound * 4 - lovedPokemonFound * 2 + excludedPokemonFound * 3 ||
+        porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 50 - favouritePokemonFound * 5 - lovedPokemonFound * 2 + excludedPokemonFound * 3 ||
+        porygonFound && giveUpTimer > 100 - favouritePokemonFound * 5 - lovedPokemonFound * 2 + excludedPokemonFound * 3 ||
         giveUpTimer > 200) {
       exitLoop = true;
     } else {

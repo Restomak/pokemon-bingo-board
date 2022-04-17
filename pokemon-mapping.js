@@ -34,6 +34,7 @@ function randomizeBoard(reroll = false) {
   let porygonFound = false;
   let cyndaquilFound = false;
   let umbreonFound = false;
+  let excludedPokemonFound = false;
   let giveUpTimer = 0;
   let exitLoop = false;
   do {
@@ -56,6 +57,21 @@ function randomizeBoard(reroll = false) {
             }
             if (pokeNum == 197 - 1) { //-1 because of how it's put into the array
               umbreonFound = true;
+            }
+            if (pokeNum <= 356 - 1 && pokeNum >= 354 - 1 || //gen 3 ghosts
+                pokeNum <= 348 - 1 && pokeNum >= 343 - 1 || //gen 3 fossils & claydoll line
+                pokeNum == 338 - 1 || //solrock
+                pokeNum == 337 - 1 || //lunatone
+                pokeNum <= 314 - 1 && pokeNum >= 311 - 1 || //illumise, volbeat, minun, plusle
+                pokeNum == 308 - 1 || //medicham
+                pokeNum == 307 - 1 || //meditite
+                pokeNum <= 297 - 1 && pokeNum >= 293 - 1 || //whismur & makuhita lines
+                pokeNum <= 275 - 1 && pokeNum >= 273 - 1 || //seedot line
+                pokeNum <= 240 - 1 && pokeNum >= 236 - 1 || //magby, elekid, smoochum, hitmontop, tyrogue
+                pokeNum == 174 - 1 || //igglybuff
+                pokeNum == 173 - 1 || //cleffa
+                pokeNum == 354 - 1) {
+              excludedPokemonFound = true;
             }
             const chosenPoke = pokemonData[pokeNum]
             pokemonOnTheBoard.push(pokeNum);
@@ -84,8 +100,9 @@ function randomizeBoard(reroll = false) {
         !reroll && porygonFound ||
         porygonFound && cyndaquilFound && umbreonFound ||
         porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 50 ||
-        porygonFound && giveUpTimer > 100 ||
-        giveUpTimer > 150) {
+        porygonFound && !excludedPokemonFound && giveUpTimer > 100 ||
+        porygonFound && giveUpTimer > 150 ||
+        giveUpTimer > 200) {
       exitLoop = true;
     } else {
       porygonFound = false;

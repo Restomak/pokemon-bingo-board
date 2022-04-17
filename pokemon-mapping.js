@@ -193,7 +193,6 @@ function randomizeBoard(reroll = false) {
       mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
       pokemonOnTheBoard = [];
       giveUpTimer++;
-      delay(1000);
     }
   } while (!exitLoop)
 

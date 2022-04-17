@@ -75,11 +75,11 @@ function randomizeBoard() {
         }
       }
     }
-    if (gen =='1' ||
+    if (gen == '1' ||
         porygonFound && cyndaquilFound && umbreonFound ||
-        giveUpTimer > 251 && porygonFound && (cyndaquilFound || umbreonFound) ||
-        giveUpTimer > 2510 && porygonFound ||
-        giveUpTimer > 25100)
+        giveUpTimer > 25100 && porygonFound && (cyndaquilFound || umbreonFound) ||
+        giveUpTimer > 251000 && porygonFound ||
+        giveUpTimer > 2510000) {
       exitLoop = true;
     } else {
       porygonFound = false;
@@ -89,7 +89,6 @@ function randomizeBoard() {
       mySeededRng = new Math.seedrandom('' + seed); // this is inconsistent if you pass a number instead of a string
       pokemonOnTheBoard = [];
       giveUpTimer++;
-      delay(1);
     }
   } while (!exitLoop)
 

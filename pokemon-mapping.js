@@ -81,10 +81,11 @@ function randomizeBoard(reroll = false) {
         giveUpTimer > 2510 && porygonFound ||
         giveUpTimer > 2510000) {*/
     if (gen == '1' ||
-        reroll && porygonFound && cyndaquilFound && umbreonFound ||
-        reroll && porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 151 ||
-        porygonFound && giveUpTimer > 251 ||
-        giveUpTimer > 386) {
+        !reroll && porygonFound ||
+        porygonFound && cyndaquilFound && umbreonFound ||
+        porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 50 ||
+        porygonFound && giveUpTimer > 100 ||
+        giveUpTimer > 150) {
       exitLoop = true;
     } else {
       porygonFound = false;

@@ -48,13 +48,13 @@ function randomizeBoard() {
           let pokeNum = getSeededRandomInt(1, getPokemonCountByGeneration(gen)) - 1;
           if (pokemonOnTheBoard.indexOf(pokeNum) < 0) {
             chosen = true;
-            if (pokeNum == 137) {
+            if (pokeNum == 137 - 1) { //-1 because of how it's put into the array
               porygonFound = true;
             }
-            if (pokeNum == 155) {
+            if (pokeNum == 155 - 1) { //-1 because of how it's put into the array
               cyndaquilFound = true;
             }
-            if (pokeNum == 197) {
+            if (pokeNum == 197 - 1) { //-1 because of how it's put into the array
               umbreonFound = true;
             }
             const chosenPoke = pokemonData[pokeNum]

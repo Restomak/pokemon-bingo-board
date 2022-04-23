@@ -39,6 +39,7 @@ function randomizeBoard(reroll = false) {
   let lovedPokemonFound = 0;
   let giveUpTimer = 0;
   let exitLoop = false;
+  let forceAllThree = true; //ignores a lot of the code I added in favour of just trying to get porygon, umbreon, cyndaquil
   do {
     for (let row = 1; row <= 5; row++) {
       for (let col = 1; col <= 5; col++) {
@@ -184,7 +185,9 @@ function randomizeBoard(reroll = false) {
         porygonFound && (cyndaquilFound || umbreonFound) && giveUpTimer > 100 - favouritePokemonFound * 4 - lovedPokemonFound + excludedPokemonFound * 2 ||
         porygonFound && giveUpTimer > 200 - favouritePokemonFound * 4 - lovedPokemonFound + excludedPokemonFound * 2 ||
         giveUpTimer > 300) {
-      exitLoop = true;
+      if (!forceAllThree || porygonFound && cyndaquilFound && umbreonFound) {
+        exitLoop = true;
+      }
     } else {
       porygonFound = false;
       cyndaquilFound = false;
